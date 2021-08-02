@@ -1,0 +1,164 @@
+from tkinter import *
+import math
+import numpy as np
+from math import factorial
+from math import *
+
+expression = ""
+
+def press(angka):
+    global expression
+
+    expression = expression + str(angka)
+
+    equation.set(expression)
+
+# Function to evaluate the final expression
+def equalpress():
+    try:
+        global expression
+        total = str(eval(expression))
+        equation.set(total)
+        expression = ""
+    except:
+        equation.set(" error ")
+        expression = ""
+
+def clear():
+    global expression
+    expression = ""
+
+    equation.set("")
+
+def fsin(arg):
+    return sin(arg * convert_constant)
+
+if __name__ == "__main__":
+    app = Tk()
+    app.configure(background="LavenderBlush")
+    app.title("Kalkulator")
+    app.geometry("300x300")
+    equation = StringVar()
+    expression_field = Entry(app, textvariable=equation, font=" lucida 11")
+    expression_field.grid(columnspan=4, ipadx=70, ipady=8)
+    
+    angka1 = Button(app, text=' 1 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(1), height=1, width=8)
+    angka1.grid(row=2, column=0)
+
+    angka2 = Button(app, text=' 2 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(2), height=1, width=8)
+    angka2.grid(row=2, column=1)
+
+    angka3 = Button(app, text=' 3 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(3), height=1, width=8)
+    angka3.grid(row=2, column=2)
+
+    angka4 = Button(app, text=' 4 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(4), height=1, width=8)
+    angka4.grid(row=3, column=0)
+
+    angka5 = Button(app, text=' 5 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(5), height=1, width=8)
+    angka5.grid(row=3, column=1)
+
+
+    angka6 = Button(app, text=' 6 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(6), height=1, width=8)
+    angka6.grid(row=3, column=2)
+
+    angka7 = Button(app, text=' 7 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(7), height=1, width=8)
+    angka7.grid(row=4, column=0)
+
+    angka8 = Button(app, text=' 8 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(8), height=1, width=8)
+    angka8.grid(row=4, column=1)
+
+    angka9 = Button(app, text=' 9 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(9), height=1, width=8)
+    angka9.grid(row=4, column=2)
+
+    angka0 = Button(app, text=' 0 ', fg='black', bg='white', font=" lucida 10 ",
+            command=lambda: press(0), height=1, width=8)
+    angka0.grid(row=5, column=1)
+
+    penambahan = Button(app, text=' + ', fg='black', bg='lightgrey', font=" lucida 10 ",
+                command=lambda: press("+"), height=1, width=8)
+    penambahan.grid(row=3, column=3)
+
+    pengurangan = Button(app, text=' - ', fg='black', bg='lightgrey', font=" lucida 10 ",
+                command=lambda: press("-"), height=1, width=8)
+    pengurangan.grid(row=4, column=3)
+
+    perkalian = Button(app, text=' * ', fg='black', bg='lightgrey', font=" lucida 10 ",
+                command=lambda: press("*"), height=1, width=8)
+    perkalian.grid(row=5, column=3)
+
+    pembagian = Button(app, text=' / ', fg='black', bg='lightgrey', font=" lucida 10 ",
+                command=lambda: press("/"), height=1, width=8)
+    pembagian.grid(row=5, column=2)
+
+    hasil = Button(app, text=' = ', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=equalpress, height=1, width=8)
+    hasil.grid(row=9, column=3)
+
+    hapus = Button(app, text='C', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=clear, height=1, width=8)
+    hapus.grid(row=2, column=3)
+
+    desimal= Button(app, text='.', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('.'), height=1, width=8)
+    desimal.grid(row=5, column=0)
+
+    pangkat = Button(app, text='x^y', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('**'), height=1, width=8)
+    pangkat.grid(row=6, column=1)
+
+    mod = Button(app, text='mod', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('%'), height=1, width=8)
+    mod.grid(row=7, column=2)
+
+    kurungbuka = Button(app, text='(', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('('), height=1, width=8)
+    kurungbuka.grid(row=7, column=0)
+
+    kurungtutup = Button(app, text=')', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press(')'), height=1, width=8)
+    kurungtutup.grid(row=7, column=1)
+
+    kuadrat = Button(app, text='xš', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('**2'), height=1, width=8)
+    kuadrat.grid(row=6, column=2)
+
+    seper = Button(app, text='1/x', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('1/('), height=1, width=8)
+    seper.grid(row=8, column=0)
+
+    phhi = Button(app, text='phi', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('3.14159'), height=1, width=8)
+    phhi.grid(row=6, column=3)
+
+    akar = Button(app, text='sqrt', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('sqrt('), height=1, width=8)
+
+    akar.grid(row=7, column=3)
+
+    absolut = Button(app, text='|x|', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('abs'+'('), height=1, width=8)
+    absolut.grid(row=6, column=0)
+
+    sin = Button(app, text='sin', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('sin'+'('), height=1, width=8)
+    sin.grid(row=8, column=2)
+
+    cos = Button(app, text='cos', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press(np.cos(angka)), height=1, width=8)
+    cos.grid(row=8, column=3)
+
+    tan = Button(app, text='tan', fg='black', bg='lightgrey', font=" lucida 10 ",
+            command=lambda: press('tan'+'('), height=1, width=8)
+    tan.grid(row=8, column=1)
+
+    app.mainloop()
+
